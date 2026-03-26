@@ -1,1 +1,94 @@
-/* You can add global styles to this file, and also import other style files */
+:root {
+  // ── Color tokens ──────────────────────────────────────────────────────────
+  --color-bg: #0f1117;
+  --color-board-bg: #1a1d2e;
+  --color-modal-bg: #1e2135;
+  --color-input-bg: #252840;
+  --color-border: rgba(255, 255, 255, 0.1);
+
+  --color-text-primary: #f0f2ff;
+  --color-text-muted: #7b82a8;
+
+  --color-accent: #63b3ed;
+
+  --color-cell-idle: #2a3a6e;
+  --color-cell-active: #f6c90e;
+  --color-cell-success: #48bb78;
+  --color-cell-fail: #fc4b4b;
+
+  // ── Typography scale ──────────────────────────────────────────────────────
+  --font-size-display: 2.5rem;
+  --font-size-h1: clamp(1.6rem, 4vw, 2.2rem);
+  --font-size-h2: 2rem;
+  --font-size-xl: 1.1rem;
+  --font-size-base: 1rem;
+  --font-size-sm: 0.9rem;
+  --font-size-xs: 0.75rem;
+  --font-size-2xs: 0.7rem;
+
+  // ── Font weights ──────────────────────────────────────────────────────────
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  --font-weight-extrabold: 800;
+
+  // ── Line heights ──────────────────────────────────────────────────────────
+  --line-height-tight: 1;
+  --line-height-snug: 1.25;
+  --line-height-normal: 1.5;
+
+  // ── Letter spacings ───────────────────────────────────────────────────────
+  --letter-spacing-tighter: -0.03em;
+  --letter-spacing-tight: -0.02em;
+  --letter-spacing-normal: 0em;
+  --letter-spacing-wide: 0.04em;
+  --letter-spacing-wider: 0.06em;
+  --letter-spacing-widest: 0.1em;
+}
+
+// ── Fluid root font size ─────────────────────────────────────────────────────
+// All rem values scale automatically with this.
+// 14px at ≤600px viewport → 16px at ≥800px viewport.
+html {
+  font-size: clamp(14px, 1vw + 8px, 16px);
+}
+
+// ── Reset ────────────────────────────────────────────────────────────────────
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  font-family:
+    'Inter',
+    -apple-system,
+    BlinkMacSystemFont,
+    'Segoe UI',
+    Roboto,
+    Helvetica,
+    Arial,
+    sans-serif;
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-normal);
+  background-color: var(--color-bg);
+  color: var(--color-text-primary);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+// ── Accessibility ─────────────────────────────────────────────────────────────
+:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}

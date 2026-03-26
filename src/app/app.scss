@@ -1,0 +1,19 @@
+:host {
+  display: block;
+  min-height: 100dvh;
+  background-color: var(--color-bg);
+}
+
+.app-shell {
+  min-height: 100dvh;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  // Narrow viewports get minimal side padding so the board fills the screen.
+  padding: 1rem 0.25rem;
+  box-sizing: border-box;
+
+  @media (min-width: 480px) {
+    padding: 2rem 1rem;
+  }
+}

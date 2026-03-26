@@ -1,0 +1,76 @@
+// =============================================================================
+// Typography mixins
+// All values reference CSS custom properties defined in :root (styles.scss).
+// Usage: @use 'typography' as *;  then  @include type-h1;
+// =============================================================================
+
+// Large score / stat numbers
+@mixin type-display {
+  font-size: var(--font-size-display);
+  font-weight: var(--font-weight-extrabold);
+  line-height: var(--line-height-tight);
+}
+
+// Page-level heading, responsive fluid size
+@mixin type-h1 {
+  font-size: var(--font-size-h1);
+  font-weight: var(--font-weight-extrabold);
+  line-height: var(--line-height-tight);
+  letter-spacing: var(--letter-spacing-tighter);
+}
+
+// Section / modal headings
+@mixin type-h2 {
+  font-size: var(--font-size-h2);
+  font-weight: var(--font-weight-extrabold);
+  line-height: var(--line-height-tight);
+  letter-spacing: var(--letter-spacing-tight);
+}
+
+// Default body copy
+@mixin type-body {
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-normal);
+}
+
+// Secondary / supporting body copy
+@mixin type-body-sm {
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-normal);
+}
+
+// ALL-CAPS field and section labels
+@mixin type-label {
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-semibold);
+  line-height: var(--line-height-tight);
+  text-transform: uppercase;
+  letter-spacing: var(--letter-spacing-wider);
+}
+
+// Hints, error messages, fine-print
+@mixin type-caption {
+  font-size: var(--font-size-2xs);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-normal);
+}
+
+// CTA / action buttons
+@mixin type-btn {
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-tight);
+  letter-spacing: var(--letter-spacing-wide);
+  font-family: inherit;
+}
+
+// Short decorative uppercase text (e.g. "VS", "WIN")
+@mixin type-overline {
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-extrabold);
+  line-height: var(--line-height-tight);
+  text-transform: uppercase;
+  letter-spacing: var(--letter-spacing-widest);
+}

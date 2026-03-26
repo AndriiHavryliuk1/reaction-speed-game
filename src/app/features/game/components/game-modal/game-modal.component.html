@@ -1,0 +1,54 @@
+<app-dialog (close)="onClose()">
+  <div class="modal">
+    <button class="modal__close" (click)="onClose()" aria-label="Close modal">
+      <i class="fa-solid fa-xmark"></i>
+    </button>
+
+    <div
+      class="modal__icon"
+      [class.modal__icon--win]="result().winner === 'player'"
+      [class.modal__icon--lose]="result().winner === 'computer'"
+      aria-hidden="true"
+    >
+      @if (result().winner === 'player') {
+        <i class="fa-solid fa-trophy"></i>
+      } @else {
+        <i class="fa-solid fa-computer"></i>
+      }
+    </div>
+
+    <h2 class="modal__title">
+      @if (result().winner === 'player') {
+        You Win!
+      } @else {
+        Computer Wins!
+      }
+    </h2>
+
+    <p class="modal__subtitle">
+      @if (result().winner === 'player') {
+        Great reflexes! You were faster than the computer.
+      } @else {
+        Better luck next time! The computer was too quick.
+      }
+    </p>
+
+    <div class="modal__score">
+      <div class="modal__score-item">
+        <span class="modal__score-label">Player</span>
+        <span class="modal__score-value modal__score-value--player">
+          {{ result().score.player }}
+        </span>
+      </div>
+      <div class="modal__score-separator">:</div>
+      <div class="modal__score-item">
+        <span class="modal__score-label">Computer</span>
+        <span class="modal__score-value modal__score-value--computer">
+          {{ result().score.computer }}
+        </span>
+      </div>
+    </div>
+
+    <button class="modal__btn" (click)="onClose()" autofocus>Play Again</button>
+  </div>
+</app-dialog>

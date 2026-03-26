@@ -1,0 +1,28 @@
+// =============================================================================
+// Primary button mixin
+// Covers the shared accent-gradient appearance used across the app.
+// Each consumer adds its own size (height, padding, border-radius) and
+// any box-shadow / transition extensions on top.
+// Usage: @use 'buttons' as *;  then  @include btn-primary;
+// =============================================================================
+
+@use 'typography' as *;
+
+@mixin btn-primary {
+  @include type-btn;
+
+  border: none;
+  background: linear-gradient(135deg, var(--color-accent), #5a9fd4);
+  color: #fff;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+
+  &:hover:not(:disabled) {
+    opacity: 0.9;
+  }
+
+  &:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+  }
+}

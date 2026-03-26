@@ -1,0 +1,62 @@
+:host {
+  display: contents;
+}
+
+.cell {
+  width: 100%;
+  aspect-ratio: 1;
+  border: none;
+  border-radius: 0.375rem;
+  cursor: default;
+  transition:
+    background-color 0.15s ease,
+    transform 0.1s ease,
+    box-shadow 0.15s ease;
+  outline: none;
+  background-color: var(--color-cell-idle);
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.3);
+  contain: strict;
+
+  &--idle {
+    background-color: var(--color-cell-idle);
+    cursor: default;
+  }
+
+  &--active {
+    background-color: var(--color-cell-active);
+    cursor: pointer;
+    animation: pulse 0.4s ease-in-out infinite alternate;
+    will-change: transform;
+    box-shadow:
+      0 0 0.75rem var(--color-cell-active),
+      0 0 1.5rem rgba(255, 220, 0, 0.4);
+
+    &:hover {
+      transform: scale(1.08);
+    }
+
+    &:active {
+      transform: scale(0.95);
+    }
+  }
+
+  &--success {
+    background-color: var(--color-cell-success);
+    box-shadow: 0 0 0.5rem var(--color-cell-success);
+  }
+
+  &--fail {
+    background-color: var(--color-cell-fail);
+    box-shadow: 0 0 0.5rem var(--color-cell-fail);
+  }
+}
+
+@keyframes pulse {
+  from {
+    transform: scale(1);
+  }
+
+  to {
+    transform: scale(1.05);
+  }
+}

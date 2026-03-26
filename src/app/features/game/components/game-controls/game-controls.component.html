@@ -1,0 +1,47 @@
+<div class="controls">
+  <div class="controls__field">
+    <div class="controls__header">
+      <label class="controls__label" for="interval-input">Milliseconds</label>
+      <span id="interval-hint" class="controls__hint">
+        Time limit per cell ({{ config.minIntervalMs }}–{{ config.maxIntervalMs }} ms)
+      </span>
+    </div>
+    <input
+      id="interval-input"
+      class="controls__input"
+      [class.controls__input--error]="showErrors()"
+      type="number"
+      [value]="intervalValue()"
+      [attr.min]="config.minIntervalMs"
+      [attr.max]="config.maxIntervalMs"
+      [disabled]="isRunning() || isPreparing()"
+      aria-describedby="interval-hint interval-error"
+      (input)="onInput($event)"
+      (blur)="onBlur()"
+    />
+    @if (showErrors()) {
+      <span id="interval-error" class="controls__error" role="alert">
+        @if (errors()?.min || errors()?.max) {
+          Value must be between {{ config.minIntervalMs }} and {{ config.maxIntervalMs }} ms
+        } @else if (errors()?.integer) {
+          Value must be a whole number
+        }
+      </span>
+    }
+  </div>
+
+  <button
+    class="controls__start-btn"
+    [disabled]="isRunning() || isPreparing() || !isValid()"
+    (click)="startGame()"
+    aria-label="Start the game"
+  >
+    @if (isPreparing()) {
+      Get Ready…
+    } @else if (isRunning()) {
+      Running…
+    } @else {
+      Start
+    }
+  </button>
+</div>

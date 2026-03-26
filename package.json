@@ -5,8 +5,7 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
-    "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "watch": "ng build --watch --configuration development"
   },
   "private": true,
   "packageManager": "npm@10.9.2",
@@ -16,7 +15,6 @@
     "@angular/core": "^21.2.0",
     "@angular/forms": "^21.2.0",
     "@angular/platform-browser": "^21.2.0",
-    "@angular/router": "^21.2.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0"
   },
@@ -28,5 +26,9 @@
     "prettier": "^3.8.1",
     "typescript": "~5.9.2",
     "vitest": "^4.0.8"
+  },
+  "engines": {
+    "node": ">=22.*",
+    "npm": ">=9.0.0"
   }
 }

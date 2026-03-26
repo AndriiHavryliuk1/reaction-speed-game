@@ -1,0 +1,17 @@
+:host {
+  display: contents;
+}
+
+dialog {
+  border: none;
+  padding: 0;
+  background: transparent;
+  box-shadow: none;
+  overflow: hidden;
+  margin: auto;
+
+  &::backdrop {
+    background: rgba(0, 0, 0, 0.75);
+    backdrop-filter: blur(4px);
+  }
+}

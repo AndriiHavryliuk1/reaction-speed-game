@@ -1,0 +1,32 @@
+<div class="scoreboard" role="status" aria-live="polite" aria-label="Score">
+  <div class="scoreboard__side scoreboard__side--player">
+    <span class="scoreboard__label">Player</span>
+    <span class="scoreboard__value">{{ score().player }}</span>
+    <div class="scoreboard__progress">
+      @for (pip of pips; track $index) {
+        <div
+          class="scoreboard__pip scoreboard__pip--player"
+          [class.scoreboard__pip--filled]="$index < score().player"
+        ></div>
+      }
+    </div>
+  </div>
+
+  <div class="scoreboard__divider">
+    <span class="scoreboard__vs">VS</span>
+    <span class="scoreboard__goal">First to {{ config.winScore }}</span>
+  </div>
+
+  <div class="scoreboard__side scoreboard__side--computer">
+    <span class="scoreboard__label">Computer</span>
+    <span class="scoreboard__value">{{ score().computer }}</span>
+    <div class="scoreboard__progress">
+      @for (pip of pips; track $index) {
+        <div
+          class="scoreboard__pip scoreboard__pip--computer"
+          [class.scoreboard__pip--filled]="$index < score().computer"
+        ></div>
+      }
+    </div>
+  </div>
+</div>

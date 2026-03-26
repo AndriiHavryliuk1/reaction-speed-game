@@ -1,0 +1,23 @@
+<div class="game">
+  <header class="game__header">
+    <h1 class="game__title">Reaction Speed Game</h1>
+    <p class="game__desc">Click the highlighted cell before the time runs out!</p>
+  </header>
+
+  <section class="game__controls" aria-label="Game controls">
+    <app-game-controls />
+  </section>
+
+  <section class="game__score" aria-label="Score board">
+    <app-game-score />
+  </section>
+
+  <section class="game__board" aria-label="Game board" #boardAnchor>
+    <app-game-board />
+    <app-game-countdown />
+  </section>
+</div>
+
+@if (gameResult()) {
+  <app-game-modal [result]="gameResult()!" (close)="onModalClose()" />
+}

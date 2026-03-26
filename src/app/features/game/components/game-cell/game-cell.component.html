@@ -1,0 +1,8 @@
+@let c = cell();
+<button
+  class="cell"
+  [class]="'cell--' + c.state"
+  [attr.aria-label]="'Cell ' + c.index + ', state: ' + c.state"
+  [attr.data-index]="c.index"
+  [disabled]="c.state !== 'active'"
+></button>

@@ -1,0 +1,19 @@
+:host {
+  display: block;
+  width: 100%;
+}
+
+.board {
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  // Gap and padding shrink on narrow viewports so cells claim more space.
+  // At 375 px: gap ≈ 4 px, padding ≈ 7 px → ~33 px cells.
+  // At 640 px: gap = 0.375rem, padding = 0.75rem → ~56 px cells.
+  gap: clamp(0.125rem, 1.2vw, 0.375rem);
+  padding: clamp(0.375rem, 2vw, 0.75rem);
+  background-color: var(--color-board-bg);
+  border-radius: 0.75rem;
+  box-shadow:
+    0 0.5rem 2rem rgba(0, 0, 0, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}

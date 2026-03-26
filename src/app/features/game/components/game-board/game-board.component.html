@@ -1,0 +1,5 @@
+<div class="board" role="grid" aria-label="Game board" (click)="onBoardClick($event)">
+  @for (cell of cells(); track cell.index) {
+    <app-game-cell [cell]="cell" />
+  }
+</div>

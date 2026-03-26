@@ -1,59 +1,72 @@
-# ReactionSpeedGame
+# Reaction Speed Game
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.2.3.
+An interactive reaction-speed mini-game built with **Angular 21**, SCSS, and modern Web APIs.
 
-## Development server
+## Game Rules
 
-To start a local development server, run:
+1. Enter **N** — the time limit in milliseconds for each round.
+2. Click **Start** to begin.
+3. A random blue cell turns **yellow**. Click it before N ms elapse!
+   - ✅ Click in time → cell turns **green**, **Player** scores 1 point.
+   - ❌ Time runs out → cell turns **red**, **Computer** scores 1 point.
+4. First to **10 points** wins. A modal announces the result.
 
-```bash
-ng serve
+## Tech Stack
+
+| Concern | Technology |
+|---|---|
+| Framework | Angular 21 (standalone, no NgModules) |
+| Styling | SCSS with CSS custom properties |
+| State | Angular Signals (`signal`, `computed`, `effect`) |
+| Change detection | `ChangeDetectionStrategy.OnPush` on every component |
+| Modal | Native HTML `<dialog>` element |
+| Build | Angular CLI / `@angular/build` (esbuild) |
+
+## Project Structure
+
+```
+src/
+└── app/
+    ├── app.ts                        # Root component
+    ├── app.config.ts                 # Application config
+    └── features/
+        └── game/
+            ├── models/
+            │   └── game.model.ts     # Interfaces, types, constants
+            ├── services/
+            │   └── game.service.ts   # Game logic (signals-based state)
+            └── components/
+                ├── game-container/   # Layout orchestrator
+                ├── game-board/       # 10×10 grid
+                ├── game-cell/        # Individual cell button
+                ├── game-controls/    # Start button + N input
+                ├── game-score/       # Scoreboard with pip indicators
+                └── game-modal/       # Result modal
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+## Getting Started
 
-## Code scaffolding
+### Prerequisites
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+- [Node.js](https://nodejs.org/) ≥ 22
+- npm ≥ 10
 
-```bash
-ng generate component component-name
-```
-
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+### Install & Run
 
 ```bash
-ng generate --help
+# Install dependencies
+npm install
+
+# Start the development server
+npm start
 ```
 
-## Building
+Open [http://localhost:4200](http://localhost:4200) in your browser.
 
-To build the project run:
+### Build for Production
 
 ```bash
-ng build
+npm run build
 ```
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+Output is placed in `dist/reaction-speed-game/browser/`.

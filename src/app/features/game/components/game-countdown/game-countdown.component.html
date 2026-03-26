@@ -1,0 +1,6 @@
+@if (countdown() !== null) {
+  <div class="overlay" role="status" aria-live="assertive" aria-label="Game starting">
+    <div class="overlay__backdrop"></div>
+    <span class="overlay__number overlay__number--{{ countdown() }}">{{ countdown() }}</span>
+  </div>
+}
