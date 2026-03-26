@@ -57,6 +57,9 @@ export class GameControlsComponent {
     if (!this.isValid()) {
       return;
     }
+    // iOS Safari will zoom in on focused inputs with small font-size.
+    // Blurring on Start dismisses the keyboard and returns the viewport to normal.
+    (document.activeElement as HTMLElement | null)?.blur?.();
     this.gameService.setIntervalMs(this.intervalValue());
     this.gameService.startGame();
   }

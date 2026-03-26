@@ -29,10 +29,16 @@ export class GameContainerComponent {
   constructor() {
     effect(() => {
       if (this.gameService.isPreparing()) {
-        this.boardAnchor()?.nativeElement.scrollIntoView({
-          behavior: 'smooth',
-          block: 'end',
-          inline: 'nearest',
+        // Wait for 1–2 frames so mobile browsers (iOS Safari) can finish
+        // dismissing the keyboard and applying viewport/layout changes.
+        requestAnimationFrame(() => {
+          requestAnimationFrame(() => {
+            this.boardAnchor()?.nativeElement.scrollIntoView({
+              behavior: 'smooth',
+              block: 'end',
+              inline: 'nearest',
+            });
+          });
         });
       }
     });
