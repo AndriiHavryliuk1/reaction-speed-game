@@ -10,6 +10,7 @@ import { GAME_CONFIG } from '../../config/game.config';
 import { GameService } from '../../services/game.service';
 
 interface IntervalErrors {
+  readonly required?: true;
   readonly min?: true;
   readonly max?: true;
   readonly integer?: true;
@@ -28,11 +29,23 @@ export class GameControlsComponent {
   readonly isRunning = this.gameService.isRunning;
   readonly isPreparing = this.gameService.isPreparing;
 
-  readonly intervalValue = signal<number>(this.config.defaultIntervalMs);
-  readonly isTouched = signal(false);
+  readonly intervalText = signal<string>(String(this.config.defaultIntervalMs));
+  readonly isInteracted = signal(false);
+
+  readonly intervalValue = computed<number | null>(() => {
+    const text = this.intervalText().trim();
+    if (text === '') {
+      return null;
+    }
+    const value = Number(text);
+    return Number.isFinite(value) ? value : null;
+  });
 
   readonly errors = computed<IntervalErrors | null>(() => {
     const value = this.intervalValue();
+    if (value === null) {
+      return { required: true };
+    }
     const errs: IntervalErrors = {
       ...(value < this.config.minIntervalMs && { min: true }),
       ...(value > this.config.maxIntervalMs && { max: true }),
@@ -42,25 +55,28 @@ export class GameControlsComponent {
   });
 
   readonly isValid = computed(() => this.errors() === null);
-  readonly showErrors = computed(() => this.isTouched() && !this.isValid());
+  readonly showErrors = computed(() => this.isInteracted() && !this.isValid());
 
   onInput(event: Event): void {
-    this.intervalValue.set(Number((event.target as HTMLInputElement).value));
+    this.intervalText.set((event.target as HTMLInputElement).value);
+    this.isInteracted.set(true);
   }
 
   onBlur(): void {
-    this.isTouched.set(true);
+    this.isInteracted.set(true);
   }
 
   startGame(): void {
-    this.isTouched.set(true);
+    this.isInteracted.set(true);
     if (!this.isValid()) {
       return;
     }
     // iOS Safari will zoom in on focused inputs with small font-size.
     // Blurring on Start dismisses the keyboard and returns the viewport to normal.
     (document.activeElement as HTMLElement | null)?.blur?.();
-    this.gameService.setIntervalMs(this.intervalValue());
+    const value = this.intervalValue();
+    if (value === null) return;
+    this.gameService.setIntervalMs(value);
     this.gameService.startGame();
   }
 }

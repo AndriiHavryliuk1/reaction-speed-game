@@ -4,7 +4,7 @@ An interactive reaction-speed mini-game built with **Angular 21**, SCSS, and mod
 
 ## Game Rules
 
-1. Enter **N** — the time limit in milliseconds for each round.
+1. Enter **Milliseconds** — the time limit in milliseconds for each round.
 2. Click **Start** to begin.
 3. A random blue cell turns **yellow**. Click it before N ms elapse!
    - ✅ Click in time → cell turns **green**, **Player** scores 1 point.
